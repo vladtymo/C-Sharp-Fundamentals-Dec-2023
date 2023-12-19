@@ -12,6 +12,8 @@ internal class Program
         */
 
         // [Alt] + [Up/Down]
+
+        // ---------------- console methods/properties
         //Console.SetWindowSize(40, 20);
         Console.BackgroundColor = ConsoleColor.DarkGreen;
         Console.ForegroundColor = ConsoleColor.White;
