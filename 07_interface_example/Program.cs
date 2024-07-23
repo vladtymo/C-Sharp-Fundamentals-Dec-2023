@@ -11,6 +11,11 @@
             this.X = x;
             this.Y = y;
         }
+
+        void ResetPosition()
+        {
+            Move(0, 0);
+        }
     }
     public interface IPrintable
     {
@@ -27,7 +32,8 @@
     public class Rectangle : IShape
     {
         public int Width { get; set; }
-        public int Height { get; set; }
+        public int Height { get; set; } // readonly property
+
         public char Filler { get; init; }
         public ConsoleColor Color { get; set; }
 
@@ -77,13 +83,31 @@
         }
     }
 
+    public class Circle : IShape
+    {
+        public int X { get; set; }
+        public int Y { get; set; }
+
+        public char Filler { get; }
+
+        public ConsoleColor Color { get; }
+
+        public string Name { get; }
+
+        public void Print()
+        {
+            // logic...
+        }
+    }
+
     internal class Program
     {
         static void TestShape(IShape shape)
         {
             Console.WriteLine($"{shape.Name} filler: {shape.Filler}");
 
-            //shape.Move(10, 10);
+            //shape.ResetPosition();
+            shape.Move(30, 10);
             shape.Print();
         }
         static void Main(string[] args)
@@ -106,7 +130,14 @@
                 Filler = '*'
             };
 
+            IPrintable printable = new Triangle();
+
+            //printable.Print();
+
             //rectangle.Filler = 'X'; // error with init-only property
+
+            //((IMovable)triangle).Move(0, 0); // top=-left corner
+
             //rectangle.Print();
             //triangle.Print();
 
